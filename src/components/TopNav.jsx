@@ -229,14 +229,9 @@ const TopNav = () => {
                 </div>
               </div>
             ) : (
-              <div className="flex gap-2">
-                <button onClick={() => { localStorage.setItem('demoStudent', 'true'); window.location.href = '/dashboard'; }} className="hidden md:inline-flex px-4 py-2 md:px-6 md:py-3 bg-white text-[#0B2117] rounded-full font-bold tracking-widest text-[10px] md:text-xs hover:bg-gray-100 transition-all shadow-lg shadow-black/5 whitespace-nowrap border border-gray-200 hover:shadow-xl hover:-translate-y-0.5">
-                  Student ID Login
-                </button>
-                <Link to="/login" className="hidden md:inline-flex px-4 py-2 md:px-6 md:py-3 bg-accent-primary text-text-primary rounded-full font-bold tracking-widest text-[10px] md:text-xs hover:bg-white transition-all shadow-lg shadow-accent-primary/20 whitespace-nowrap border border-accent-primary hover:border-text-primary/10 hover:shadow-xl hover:-translate-y-0.5">
-                  Login
-                </Link>
-              </div>
+              <Link to="/login" className="hidden md:inline-flex px-4 py-2 md:px-6 md:py-3 bg-accent-primary text-text-primary rounded-full font-bold tracking-widest text-[10px] md:text-xs hover:bg-white transition-all shadow-lg shadow-accent-primary/20 whitespace-nowrap border border-accent-primary hover:border-text-primary/10 hover:shadow-xl hover:-translate-y-0.5">
+                Login
+              </Link>
             )}
 
             <a href="tel:09156953895" className="hidden lg:block px-6 py-3 bg-text-primary text-bg-primary rounded-full font-bold tracking-widest text-xs hover:bg-accent-primary transition-all shadow-lg shadow-text-primary/10 whitespace-nowrap">
@@ -307,14 +302,9 @@ const TopNav = () => {
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col gap-2 mt-2 w-full flex-shrink-0">
-                <button onClick={() => { localStorage.setItem('demoStudent', 'true'); window.location.href = '/dashboard'; }} className="w-full py-4 bg-white text-[#0B2117] rounded-xl font-bold tracking-widest text-sm hover:bg-gray-100 transition-all text-center inline-block border border-gray-200 shadow-sm">
-                  Student ID Login
-                </button>
-                <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="w-full py-4 bg-accent-primary text-text-primary rounded-xl font-bold tracking-widest text-sm hover:bg-white transition-all text-center inline-block border border-accent-primary shadow-lg shadow-accent-primary/20">
-                  Login
-                </Link>
-              </div>
+              <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="mt-2 w-full py-4 bg-accent-primary text-text-primary rounded-xl font-bold tracking-widest text-sm hover:bg-white transition-all text-center inline-block border border-accent-primary shadow-lg shadow-accent-primary/20 flex-shrink-0">
+                Login
+              </Link>
             )}
 
             <a href="tel:09156953895" className="mt-2 mb-8 w-full py-4 bg-text-primary text-white rounded-xl font-bold tracking-widest text-sm hover:bg-accent-primary transition-colors text-center inline-block flex-shrink-0">
