@@ -16,6 +16,7 @@ const DashboardSection = () => {
   const [notes, setNotes] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [activeNote, setActiveNote] = React.useState(null);
+  const [hasApprovedEnrollment, setHasApprovedEnrollment] = React.useState(false);
 
   React.useEffect(() => {
     const fetchDashboardData = async () => {
@@ -58,21 +59,29 @@ const DashboardSection = () => {
           if (enrollmentError) throw enrollmentError;
           setEnrollments(enrollmentData || []);
 
-          // Fetch Notes for approved courses
+          // Fetch Notes for approved courses and general notes
           const approvedCourseIds = (enrollmentData || [])
             .filter(e => e.status === 'approved' && e.course_id)
             .map(e => e.course_id);
+            
+          const isApproved = (enrollmentData || []).some(e => e.status === 'approved');
+          setHasApprovedEnrollment(isApproved);
 
-          if (approvedCourseIds.length > 0) {
+          if (isApproved) {
             const { data: notesData, error: notesError } = await supabase
               .from('notes')
               .select('*')
               .eq('is_active', true)
-              .in('course_id', approvedCourseIds)
               .order('display_order', { ascending: true });
-            
+              
             if (notesError) throw notesError;
-            setNotes(notesData || []);
+            
+            // Filter notes client-side: either general (no course_id) or matching an approved course
+            const filteredNotes = (notesData || []).filter(note => {
+              return !note.course_id || approvedCourseIds.includes(note.course_id);
+            });
+            
+            setNotes(filteredNotes);
           }
         }
       } catch (err) {
@@ -159,7 +168,7 @@ const DashboardSection = () => {
               <Link to="/courses" className="px-8 py-3 bg-[#166534] text-white text-xs font-bold uppercase tracking-widest rounded-xl hover:bg-[#0f4523] transition-colors">Explore Courses</Link>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6">
               {enrollments.map((enrollment) => (
                 <div key={enrollment.id} className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm flex flex-col relative overflow-hidden">
                   <div className="flex justify-between items-start mb-4">
@@ -171,9 +180,80 @@ const DashboardSection = () => {
                       }`}>
                         {enrollment.status}
                       </span>
-                      <h4 className="text-xl font-bold text-text-primary">{enrollment.course_name}</h4>
+                      <h4 className="text-xl font-bold text-text-primary">{enrollment.course_name || 'General Registration'}</h4>
                     </div>
                   </div>
+                  
+                  {(() => {
+                    if (!enrollment.notes) return null;
+                    let history = [];
+                    try {
+                      const parsed = JSON.parse(enrollment.notes);
+                      if (Array.isArray(parsed)) {
+                        history = parsed;
+                      } else if (parsed && typeof parsed === 'object') {
+                        history = [parsed];
+                      } else if (typeof parsed === 'string' && parsed.trim() !== '') {
+                        history = [{ text: parsed }];
+                      }
+                    } catch(e) {
+                      if (typeof enrollment.notes === 'string' && enrollment.notes.trim() !== '') {
+                        history = [{ text: enrollment.notes }];
+                      }
+                    }
+
+                    if (history.length === 0) return null;
+
+                    return (
+                      <div className="space-y-3 mb-6">
+                        {history.map((note, idx) => (
+                          <div key={note.id || idx} className="bg-gray-50/80 rounded-xl p-3 border border-gray-100 shadow-sm relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-3 group hover:shadow-md transition-all">
+                            <div className="absolute top-0 left-0 w-1 h-full bg-[#166534]/80 rounded-l-xl"></div>
+                            
+                            <div className="flex items-center gap-3 pl-2 flex-1 min-w-0">
+                              <div className="flex items-center gap-2 shrink-0">
+                                <div className="w-6 h-6 rounded-full bg-[#166534]/10 flex items-center justify-center">
+                                  <svg className="w-3 h-3 text-[#166534]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                </div>
+                                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest hidden sm:block">Note</span>
+                              </div>
+                              
+                              {note.text && (
+                                <p className="text-[13px] text-gray-700 truncate font-medium flex-1 min-w-0" title={note.text}>
+                                  {note.text}
+                                </p>
+                              )}
+                            </div>
+                            
+                            <div className="flex items-center gap-3 shrink-0 pl-8 md:pl-0">
+                              <span className="text-[10px] font-semibold text-gray-400 bg-white px-1.5 py-0.5 rounded border border-gray-100">
+                                {note.date ? new Date(note.date).toLocaleDateString() : new Date(enrollment.created_at).toLocaleDateString()}
+                              </span>
+                              
+                              {note.pdfUrl && (
+                                <a 
+                                  href={note.pdfUrl} 
+                                  target="_blank" 
+                                  rel="noreferrer" 
+                                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 hover:border-[#166534]/50 hover:bg-[#166534]/5 text-gray-700 hover:text-[#166534] text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all shadow-sm"
+                                >
+                                  <svg className="w-3.5 h-3.5 text-[#166534]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                  Open PDF
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })()}
+
+                  {enrollment.status === 'pending' && (
+                    <div className="mt-auto pt-4 border-t border-gray-50 flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></div>
+                      <span className="text-sm font-medium text-text-secondary">Waiting for Admin Approval</span>
+                    </div>
+                  )}
                   
                   {enrollment.status === 'approved' && enrollment.student_id && (
                     <div className="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
@@ -187,40 +267,42 @@ const DashboardSection = () => {
           )}
         </div>
 
-        {/* Course Materials & Notes */}
-        <div>
-          <h3 className="text-2xl font-display font-bold text-text-primary mb-6">Course Materials & Notes</h3>
-          
-          {notes.length === 0 ? (
-            <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm text-center">
-              <p className="text-text-secondary">No notes or materials available yet for your approved courses.</p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-3 gap-6">
-              {notes.map(note => (
-                <div key={note.id} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow group">
-                  <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-[#166534] mb-4 group-hover:scale-110 transition-transform">
-                    {note.file_type === 'pdf' ? (
-                       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+        {/* General Notes */}
+        {hasApprovedEnrollment && (
+          <div>
+            <h3 className="text-2xl font-display font-bold text-text-primary mb-6">General Notes</h3>
+            
+            {notes.length === 0 ? (
+              <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm text-center">
+                <p className="text-text-secondary">No notes or materials available yet for your approved courses.</p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-3 gap-6">
+                {notes.map(note => (
+                  <div key={note.id} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow group">
+                    <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-[#166534] mb-4 group-hover:scale-110 transition-transform">
+                      {note.file_type === 'pdf' ? (
+                         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                      ) : (
+                         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+                      )}
+                    </div>
+                    <h4 className="font-bold text-text-primary mb-2 line-clamp-1">{note.title}</h4>
+                    <p className="text-xs text-text-secondary mb-4 line-clamp-2">{note.description || 'No description provided.'}</p>
+                    
+                    {note.file_type === 'link' ? (
+                      <a href={note.file_url} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-[#166534] uppercase tracking-widest hover:underline">Open Link →</a>
+                    ) : note.file_type === 'pdf' ? (
+                      <a href={note.file_url} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-[#166534] uppercase tracking-widest hover:underline">Download PDF →</a>
                     ) : (
-                       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+                      <button onClick={() => setActiveNote(note)} className="text-xs font-bold text-[#166534] uppercase tracking-widest hover:underline">Read Note →</button>
                     )}
                   </div>
-                  <h4 className="font-bold text-text-primary mb-2 line-clamp-1">{note.title}</h4>
-                  <p className="text-xs text-text-secondary mb-4 line-clamp-2">{note.description || 'No description provided.'}</p>
-                  
-                  {note.file_type === 'link' ? (
-                    <a href={note.file_url} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-[#166534] uppercase tracking-widest hover:underline">Open Link →</a>
-                  ) : note.file_type === 'pdf' ? (
-                    <a href={note.file_url} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-[#166534] uppercase tracking-widest hover:underline">Download PDF →</a>
-                  ) : (
-                    <button onClick={() => setActiveNote(note)} className="text-xs font-bold text-[#166534] uppercase tracking-widest hover:underline">Read Note →</button>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
 
       </div>
     </AnimatedSection>

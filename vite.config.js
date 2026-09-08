@@ -20,6 +20,13 @@ export default defineConfig({
   server: {
     watch: {
       ignored: ['**/src/assets/**']
+    },
+    proxy: {
+      '/supabase-api': {
+        target: 'https://cgzztjavrreugujsxlah.supabase.co',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/supabase-api/, '')
+      }
     }
   }
 })

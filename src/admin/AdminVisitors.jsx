@@ -52,12 +52,12 @@ const AdminVisitors = () => {
   return (
     <div className="space-y-6 animate-fade-in font-sans">
       <Helmet>
-        <title>Manage Leads & Visitors - Admin</title>
+        <title>Manage Inquiries - Admin</title>
       </Helmet>
 
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
         <div>
-          <h1 className="text-2xl font-bold text-text-primary">Visitors & Leads</h1>
+          <h1 className="text-2xl font-bold text-text-primary">Inquiries & Leads</h1>
           <p className="text-sm text-text-secondary mt-1">Manage inquiries from the contact forms.</p>
         </div>
         

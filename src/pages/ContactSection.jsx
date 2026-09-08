@@ -11,16 +11,39 @@ import { serviceData, courseDetails, baseCourses, additionalCourses, FREE_NOTES 
 import AnimatedSection from '../components/AnimatedSection';
 
 const ContactSection = ({ isContactPage = false }) => {
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const fname = formData.get('fname') || '';
     const lname = formData.get('lname') || '';
     const email = formData.get('email') || '';
+    const phone = formData.get('phone') || '';
     const message = formData.get('message') || '';
 
-    const text = `Hi Advait Academy!%0A%0A*Name:* ${fname} ${lname}%0A*Email:* ${email}%0A*Message:* ${message}`;
-    window.open(`https://wa.me/919156953895?text=${text}`, '_blank');
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase.from('visitors').insert([{
+        name: `${fname} ${lname}`.trim(),
+        email,
+        phone,
+        message,
+        status: 'new'
+      }]);
+
+      if (error) throw error;
+
+      const text = `Hi Advait Academy!%0A%0A*Name:* ${fname} ${lname}%0A*Phone:* ${phone}%0A*Email:* ${email}%0A*Message:* ${message}`;
+      window.open(`https://wa.me/919156953895?text=${text}`, '_blank');
+      
+      e.target.reset();
+    } catch (error) {
+      console.error(error);
+      alert("Error sending message: " + error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -155,11 +178,15 @@ const ContactSection = ({ isContactPage = false }) => {
               <input name="email" type="email" required className="w-full bg-bg-secondary/30 border border-black/5 rounded-xl px-5 py-4 text-text-primary outline-none focus:border-accent-secondary focus:bg-white transition-all placeholder:text-text-secondary/50" placeholder="john@example.com" />
             </div>
             <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-text-secondary">Phone Number</label>
+              <input name="phone" type="tel" required className="w-full bg-bg-secondary/30 border border-black/5 rounded-xl px-5 py-4 text-text-primary outline-none focus:border-accent-secondary focus:bg-white transition-all placeholder:text-text-secondary/50" placeholder="+91 XXXXX XXXXX" />
+            </div>
+            <div className="space-y-2">
               <label className="text-xs font-bold uppercase tracking-widest text-text-secondary">Message</label>
               <textarea name="message" required rows="4" className="w-full bg-bg-secondary/30 border border-black/5 rounded-xl px-5 py-4 text-text-primary outline-none focus:border-accent-secondary focus:bg-white transition-all resize-none placeholder:text-text-secondary/50" placeholder="How can we help you achieve your goals?"></textarea>
             </div>
-            <button type="submit" className="w-full mt-4 py-5 bg-gradient-to-r from-accent-primary to-[#166b44] text-white rounded-xl font-bold uppercase tracking-widest text-sm hover:shadow-[0_10px_30px_rgba(17,82,52,0.3)] hover:-translate-y-1 transition-all duration-300">
-              Send via WhatsApp
+            <button type="submit" disabled={isSubmitting} className={`w-full mt-4 py-5 bg-gradient-to-r from-accent-primary to-[#166b44] text-white rounded-xl font-bold uppercase tracking-widest text-sm hover:shadow-[0_10px_30px_rgba(17,82,52,0.3)] hover:-translate-y-1 transition-all duration-300 ${isSubmitting ? 'opacity-70 cursor-wait' : ''}`}>
+              {isSubmitting ? 'Sending Inquiry...' : 'Send Inquiry'}
             </button>
           </form>
         </div>

@@ -20,6 +20,7 @@ const TopNav = () => {
   const [isAdmin, setIsAdmin] = React.useState(false);
   const [profileOpen, setProfileOpen] = React.useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     if (mobileMenuOpen) {
@@ -70,6 +71,7 @@ const TopNav = () => {
   const handleLogout = async () => {
     localStorage.removeItem('demoStudent');
     await supabase.auth.signOut();
+    navigate('/');
   };
 
   React.useEffect(() => {
