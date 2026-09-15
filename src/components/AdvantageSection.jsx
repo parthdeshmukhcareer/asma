@@ -34,14 +34,7 @@ const AdvantageSection = () => {
       {/* Massive Highlight Island (Soft Theme-Matched) */}
       <div className="max-w-6xl mx-auto bg-bg-secondary rounded-[30px] py-8 md:py-12 px-6 md:px-10 lg:px-12 relative overflow-hidden shadow-2xl border border-text-primary/5">
 
-        {/* Island Inner Glows and Textures with Parallax */}
-        <div
-          className="absolute top-0 right-0 w-full h-full bg-cover bg-center pointer-events-none scale-100 transition-transform duration-[800ms] ease-out"
-          style={{
-            backgroundImage: "url('/advantage-bg.png')",
-            transform: `translateY(${offsetY * 0.15}px)`
-          }}
-        ></div>
+        {/* Removed jarring background image for a cleaner, premium editorial aesthetic */}
 
         <div className="relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-10">

@@ -7,16 +7,19 @@ import { blogPosts } from '../blogData';
 import shubhangiImg from '../assets/shubhangi.png';
 import krishnaImg from '../assets/krishna.png';
 import vrushaliImg from '../assets/vrushali.png';
-import { serviceData, courseDetails, baseCourses, additionalCourses, FREE_NOTES } from '../data';
+import { serviceData, courseDetails, baseCourses, additionalCourses, FREE_NOTES, homeFaqs } from '../data';
 import SEO from '../components/SEO';
 import MultiChartSection from '../components/MultiChartSection';
 import AboutSection from '../components/AboutSection';
 import AchievementsSection from '../components/AchievementsSection';
+import FeaturedCoursesSection from '../components/FeaturedCoursesSection';
 import ServicesSection from '../components/ServicesSection';
+import SocialLearningHub from '../components/SocialLearningHub';
 import CoursesSection from './CoursesSection';
 import GallerySection from './GallerySection';
 import AdvantageSection from '../components/AdvantageSection';
 import ReviewsSection from '../components/ReviewsSection';
+import FaqSection from '../components/FaqSection';
 import ContactSection from './ContactSection';
 import VideoHero from '../components/VideoHero';
 const Home = () => (
@@ -25,12 +28,15 @@ const Home = () => (
     <VideoHero />
     <AboutSection />
     <AchievementsSection />
+    <FeaturedCoursesSection />
     <MultiChartSection />
     <ServicesSection />
+    <SocialLearningHub />
     <CoursesSection />
     <GallerySection />
     <AdvantageSection />
     <ReviewsSection />
+    <FaqSection faqs={homeFaqs} />
     <ContactSection />
   </main>
 );

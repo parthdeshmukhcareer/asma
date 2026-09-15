@@ -11,6 +11,9 @@ import { serviceData, courseDetails, baseCourses, additionalCourses, coursePacka
 import AnimatedSection from '../components/AnimatedSection';
 import NotificationScroller from '../components/NotificationScroller';
 import LatestUpdatesSection from '../components/LatestUpdatesSection';
+import SocialLearningHub from '../components/SocialLearningHub';
+import FaqSection from '../components/FaqSection';
+import { courseFaqs } from '../data';
 
 const CoursesSection = ({ isCoursesPage = false }) => {
   const [courses, setCourses] = useState([]);
@@ -50,10 +53,6 @@ const CoursesSection = ({ isCoursesPage = false }) => {
 
   return (
     <>
-    <div className="mb-0">
-      <NotificationScroller />
-    </div>
-    <LatestUpdatesSection />
     <AnimatedSection id="courses" className="py-8 md:py-12 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 lg:px-12 relative z-10 max-w-[1200px]">
 
@@ -223,6 +222,7 @@ const CoursesSection = ({ isCoursesPage = false }) => {
       </div>
 
     </AnimatedSection>
+    {isCoursesPage && <FaqSection faqs={courseFaqs} />}
     </>
   );
 };

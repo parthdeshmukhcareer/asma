@@ -318,6 +318,164 @@ export const courseDetails = {
     benefits: ["Advanced Trading Setups", "Technique Manuals & Cheat Sheets", "Daily Pre-Market Analysis", "Live Execution Practice"]
   }
 };
+export const testimonials = [
+  {
+    name: "Rahul Verma",
+    role: "Full-Time Trader",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    content: "The Professional Master Program changed my perspective completely. Advait's focus on risk management helped me turn profitable within 3 months.",
+    rating: 5
+  },
+  {
+    name: "Sneha Patil",
+    role: "IT Professional",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    content: "Balancing a job and trading felt impossible until I learned their swing trading strategies. The mentorship here is unparalleled.",
+    rating: 5
+  },
+  {
+    name: "Amit Deshmukh",
+    role: "Business Owner",
+    image: "https://randomuser.me/api/portraits/men/85.jpg",
+    content: "I've taken multiple courses before, but the practical live-market sessions at ASMA are what actually made the difference. Highly recommended.",
+    rating: 5
+  }
+];
+
+export const homeFaqs = [
+  {
+    question: "Is Advait Stock Market Academy a good stock market academy in Nagpur?",
+    answer: "Advait Stock Market Academy is a Nagpur-based stock market academy with 20+ years of market experience and practical live-market training."
+  },
+  {
+    question: "What courses does Advait Stock Market Academy offer?",
+    answer: "Advait Stock Market Academy offers practical stock market training covering equity, commodities, technical analysis, options, futures, fundamental analysis, risk management, portfolio management and market psychology."
+  },
+  {
+    question: "Why choose Advait Stock Market Academy for stock market training in Nagpur?",
+    answer: "Advait Stock Market Academy combines 20+ years of market experience with live-market practical training, technical analysis, trading strategies, risk management, personalized guidance and continued mentorship."
+  },
+  {
+    question: "Is trading in the stock market profitable for beginners?",
+    answer: "Yes, with the right guidance and strict risk management, beginners can learn to generate consistent returns in the stock market. Advait Stock Market Academy focuses on building strong foundations first."
+  },
+  {
+    question: "How long does it take to learn stock market trading?",
+    answer: "While you can learn the basics in a few weeks, mastering trading takes months of practice. Our Professional Master Program is designed to guide you through this journey efficiently."
+  },
+  {
+    question: "Do I need a finance background to join Advait Stock Market Academy?",
+    answer: "Not at all. Our courses are structured from scratch, making it easy for students from any background to grasp complex market concepts."
+  }
+];
+
+export const courseFaqs = [
+  {
+    question: "Does Advait Stock Market Academy provide live stock market training?",
+    answer: "Yes. Advait Stock Market Academy focuses on practical learning through live-market sessions where students can understand how market concepts are applied in real trading conditions."
+  },
+  {
+    question: "What is taught in Advait Stock Market Academy's Professional Master Program?",
+    answer: "The Professional Master Program covers futures, options, advanced trading techniques, trading strategies, fundamental analysis, portfolio optimization and advanced psychological training."
+  },
+  {
+    question: "Does Advait Stock Market Academy provide stock market courses for working professionals?",
+    answer: "Yes. The academy's courses are suitable for learners with different levels of market experience who want to develop practical trading and investing skills."
+  },
+  {
+    question: "Can beginners learn stock market trading at Advait Stock Market Academy?",
+    answer: "Yes. Advait Stock Market Academy's training is designed for beginners as well as experienced traders who want to improve their market knowledge and trading skills."
+  },
+  {
+    question: "Can I learn stock market investing at Advait Stock Market Academy?",
+    answer: "Yes. Advait Stock Market Academy provides education on stock market investing, portfolio management, fundamental analysis and long-term wealth-building concepts."
+  },
+  {
+    question: "Will I get practical live-market experience during the course?",
+    answer: "Absolutely. We strongly believe in practical learning. You will execute trades in the live market under the guidance of our expert mentors."
+  }
+];
+
+export const analysisFaqs = [
+  {
+    question: "Does Advait Stock Market Academy teach technical analysis?",
+    answer: "Yes. Technical analysis is a core part of Advait Stock Market Academy's curriculum, including chart analysis, market trends and practical trading setups."
+  },
+  {
+    question: "Does Advait Stock Market Academy teach fundamental analysis?",
+    answer: "Yes. Fundamental analysis is included in the advanced curriculum to help students evaluate companies and understand investment decisions."
+  },
+  {
+    question: "Does Advait Stock Market Academy teach intraday trading?",
+    answer: "Yes. Students learn practical intraday trading concepts, market analysis, trade execution and risk-management techniques."
+  },
+  {
+    question: "Does Advait Stock Market Academy teach swing trading?",
+    answer: "Yes. Advait Stock Market Academy covers trading strategies that help students understand market trends and identify potential swing-trading opportunities."
+  },
+  {
+    question: "How accurate is technical analysis in the Indian stock market?",
+    answer: "Technical analysis is highly effective when combined with proper risk management and market psychology, which are core pillars of our teaching methodology."
+  },
+  {
+    question: "Which charting software do you teach at Advait Stock Market Academy?",
+    answer: "We train our students on industry-standard platforms like TradingView, helping them understand advanced indicators and smart money concepts."
+  }
+];
+
+export const servicesFaqs = [
+  {
+    question: "Does Advait Stock Market Academy provide stock market mentorship?",
+    answer: "Yes. Advait Stock Market Academy provides continued guidance and lifetime support to help students improve their understanding of markets and trading strategies."
+  },
+  {
+    question: "Does Advait Stock Market Academy provide mutual fund and SIP education?",
+    answer: "Yes. Advait Stock Market Academy's curriculum includes mutual funds, SIPs and portfolio-management concepts for learners interested in diversified investing."
+  },
+  {
+    question: "Does Advait Stock Market Academy offer options trading courses in Nagpur?",
+    answer: "Yes. Advait Stock Market Academy provides advanced training covering options markets, options strategies and practical trading techniques."
+  },
+  {
+    question: "Does Advait Stock Market Academy provide practical trading strategies?",
+    answer: "Yes. Advait Stock Market Academy focuses on practical strategies and market setups developed through years of market experience and research."
+  },
+  {
+    question: "What is included in the portfolio management guidance?",
+    answer: "We guide you on asset allocation, diversification, and risk profiling to help you build a resilient, long-term wealth portfolio."
+  },
+  {
+    question: "How does lifetime support and mentorship work?",
+    answer: "Even after your course finishes, you remain part of the Advait Stock Market Academy community with access to market updates, strategy reviews, and direct mentor support."
+  }
+];
+
+export const aboutContactFaqs = [
+  {
+    question: "Where is Advait Stock Market Academy located in Nagpur?",
+    answer: "Advait Stock Market Academy is located at Besa–Pipla Road, Nagpur, Maharashtra, and provides stock market education for learners in Nagpur and surrounding areas."
+  },
+  {
+    question: "How can I join a stock market course in Nagpur?",
+    answer: "You can contact Advait Stock Market Academy to enquire about available courses, upcoming batches, training programs and admission details."
+  },
+  {
+    question: "Does Advait Stock Market Academy teach stock market psychology?",
+    answer: "Yes. Advait Stock Market Academy includes mindset development and market psychology to help traders understand the importance of discipline and emotional control."
+  },
+  {
+    question: "Does Advait Stock Market Academy teach risk management in trading?",
+    answer: "Yes. Risk management and capital protection are important parts of Advait Stock Market Academy's practical trading education."
+  },
+  {
+    question: "Who are the trainers at Advait Stock Market Academy?",
+    answer: "Our courses are led by seasoned market professionals with over 20+ years of cumulative experience in active trading and investing."
+  },
+  {
+    question: "Can I visit the academy for a face-to-face consultation?",
+    answer: "Yes, we welcome aspiring traders to visit our Nagpur center at Besa–Pipla Road for a personal career counseling session."
+  }
+];
 export const baseCourses = [
   {
     title: "Equity Market",

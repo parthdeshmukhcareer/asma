@@ -1,13 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Routes, Route, useLocation, Link, useParams, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { motion, AnimatePresence } from 'framer-motion';
-import { supabase } from '../supabaseClient';
-import { blogPosts } from '../blogData';
-import shubhangiImg from '../assets/shubhangi.png';
-import krishnaImg from '../assets/krishna.png';
-import vrushaliImg from '../assets/vrushali.png';
-import { serviceData, courseDetails, baseCourses, additionalCourses, FREE_NOTES } from '../data';
+import React from 'react';
 import AnimatedSection from './AnimatedSection';
 import PhoneNumber from './PhoneNumber';
 
@@ -35,105 +26,101 @@ const AboutSection = ({ hideExploreButton = false }) => {
     },
   ];
 
-  const checklist = [
-    "Minimal fees with installment facility",
-    "Free lifetime repeat classes",
-    "Guaranteed lifetime support",
-    "Trusted by thousands of satisfied students"
-  ];
-
   return (
-    <AnimatedSection id="about" className="py-8 md:py-12 relative bg-bg-secondary/10 overflow-hidden">
+    <AnimatedSection id="about" className="py-16 md:py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 lg:px-12">
-
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
-          <div className="inline-block px-5 py-2 rounded-full bg-white border border-accent-primary/20 text-accent-primary font-bold tracking-widest uppercase text-xs mb-6 shadow-sm">
-            Live Market Trading Education
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-text-primary leading-tight">
-            Master the Market with <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary to-accent-secondary">Confidence</span>
-          </h2>
-        </div>
-
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
-
-          {/* Box 1: The Image & Experience (Spans 1 col, 2 rows on large screens) */}
-          <div className="lg:col-span-1 lg:row-span-2 relative rounded-[32px] overflow-hidden shadow-2xl group min-h-[400px] lg:min-h-full border border-white/50">
-            <img loading="lazy"
-              src="/founder.jpg"
-              alt="Advait Academy Leadership"
-              className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 group-hover:rotate-1 transition-transform duration-1000 ease-out"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-text-primary/95 via-text-primary/40 to-transparent"></div>
-
-            </div>
-
-          {/* Box 2: The Core Message */}
-          <div className="lg:col-span-2 flex flex-col gap-2 md:gap-4">
-            <div className="px-2 md:px-4 w-full overflow-hidden">
-              <div className="flex items-baseline font-display leading-none drop-shadow-sm whitespace-nowrap">
-                <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-accent-primary">20</span>
-                <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-accent-secondary">+</span>
-                <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-text-primary italic font-bold ml-2">Years of Real Market Experience</span>
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+          
+          {/* Left Column: Image */}
+          <div className="w-full lg:w-5/12 relative pb-8 lg:pb-0 pr-0 lg:pr-8">
+            <div className="relative rounded-2xl shadow-2xl aspect-[4/5] max-w-md mx-auto lg:mx-0 lg:ml-auto group">
+              {/* Image Container with overflow hidden */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden border border-text-primary/10">
+                <img 
+                  loading="lazy"
+                  src="/asma founder.png" 
+                  alt="Advait Academy Leadership" 
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               </div>
+              
+              {/* Experience Badge overlay - Simple & Clean */}
+              <div className="absolute -bottom-6 lg:bottom-10 right-4 lg:-right-8 bg-white rounded-xl px-6 py-4 shadow-xl border border-black/5 flex items-center gap-5 z-20 w-max">
+                
+                <div className="text-4xl md:text-5xl font-black text-accent-secondary tracking-tighter">
+                  20+
+                </div>
+                
+                <div className="w-px h-10 bg-black/10"></div>
+
+                <div className="text-text-primary font-bold text-sm md:text-base leading-snug">
+                  Years of Real <br/>Market Experience
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Content */}
+          <div className="w-full lg:w-7/12 flex flex-col justify-center">
+            <div className="inline-flex px-4 py-1.5 rounded-full bg-accent-primary/10 text-accent-primary font-bold tracking-wider uppercase text-xs mb-6 w-max border border-accent-primary/20">
+              Live Market Trading Education
             </div>
             
-            <div className="flex-1 rounded-[32px] bg-white border border-text-primary/5 p-8 md:p-12 shadow-lg flex flex-col justify-center relative overflow-hidden group hover:border-accent-primary/30 transition-colors duration-500">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-accent-secondary/10 rounded-full blur-[80px] group-hover:bg-accent-primary/20 transition-colors duration-700"></div>
-            <h3 className="text-2xl md:text-4xl font-display font-bold text-text-primary mb-6 relative z-10 leading-snug">
-              Central India's Most Experienced Stock Market Academy
-            </h3>
-            <p className="text-text-secondary text-lg leading-relaxed relative z-10">
-              Designed for <strong className="text-text-primary font-bold">beginners to professional traders</strong>, we teach strictly in live markets. Our disciplined, confidence-driven strategies ensure practical learning that translates to real-world success.
-            </p>
-          </div>
-
-          </div>
-
-          {/* Box 3: The 4 Features (Grid inside Grid) */}
-          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {features.map((feature, idx) => (
-              <div key={idx} className="relative bg-white rounded-[24px] p-4 md:p-5 border border-text-primary/5 shadow-sm hover:border-accent-primary/30 hover:shadow-[0_10px_20px_rgba(17,82,52,0.06)] transition-all duration-300 overflow-hidden group flex items-center gap-4 cursor-default">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-accent-primary/5 rounded-full blur-[20px] group-hover:bg-accent-primary/15 group-hover:scale-125 transition-all duration-500 pointer-events-none -mr-8 -mt-8"></div>
-
-                <div className="w-12 h-12 rounded-[14px] bg-bg-secondary border border-text-primary/5 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:shadow-sm group-hover:border-accent-primary/20 transition-all duration-300 relative z-10">
-                  {feature.icon}
-                </div>
-
-                <div className="relative z-10">
-                  <div className="font-bold text-text-primary text-sm md:text-base mb-0.5 group-hover:text-accent-primary transition-colors duration-300">
-                    {feature.title}
-                  </div>
-                  <div className="text-text-secondary text-[10px] uppercase tracking-wider font-semibold group-hover:text-accent-primary/80 transition-colors duration-300">
-                    {feature.subtitle}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Box 4: Our Journey & CTA (Spans all columns) - Only on About Page */}
-          {hideExploreButton && (
-            <div className="lg:col-span-3 rounded-[32px] bg-text-primary p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 shadow-2xl relative overflow-hidden mt-2">
-              <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-accent-primary rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
-
-              <div className="w-full md:w-2/3 relative z-10 flex flex-col justify-center">
-                <h4 className="text-accent-primary font-display font-bold tracking-wide text-2xl md:text-3xl lg:text-4xl mb-4 drop-shadow-sm">Our Journey</h4>
-                <p className="text-white/90 text-sm md:text-base leading-relaxed">
-                  For over two decades, Advait Stock Market Academy has been at the forefront of financial education in Central India. We started with a simple vision to demystify the stock market, and today we have empowered thousands of students to achieve financial independence through practical, live-market training and mentorship.
-                </p>
-              </div>
-
-              <div className="w-full md:w-1/3 flex flex-col justify-center items-center md:items-end relative z-10 border-t md:border-t-0 md:border-l border-white/10 pt-8 md:pt-0 md:pl-10 h-full">
-                <a href="tel:09156953895" className="px-8 py-4 bg-accent-primary text-text-primary font-bold uppercase tracking-widest text-xs rounded-xl hover:bg-white transition-all w-full text-center shadow-lg shadow-accent-primary/20 hover:scale-105 active:scale-95">
-                  Call Now: <PhoneNumber number="09156953895" />
-                </a>
-              </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-text-primary leading-tight mb-8">
+              Master the Market with <span className="text-accent-primary">Confidence</span>
+            </h2>
+            
+            <div className="mb-10 border-l-4 border-accent-primary pl-6 py-2">
+              <h3 className="text-xl md:text-2xl font-bold text-text-primary mb-3 leading-snug">
+                Central India's Most Experienced Stock Market Academy
+              </h3>
+              <p className="text-text-secondary text-lg leading-relaxed">
+                Designed for <strong className="text-text-primary">beginners to professional traders</strong>, we teach strictly in live markets. Our disciplined, confidence-driven strategies ensure practical learning that translates to real-world success.
+              </p>
             </div>
-          )}
+
+            {/* Features Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+              {features.map((feature, idx) => (
+                <div key={idx} className="flex items-start gap-4 p-4 rounded-xl hover:bg-bg-secondary/50 transition-colors border border-transparent hover:border-text-primary/5">
+                  <div className="w-12 h-12 rounded-lg bg-accent-primary/10 flex items-center justify-center shrink-0 shadow-sm">
+                    {feature.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-text-primary text-base mb-1">
+                      {feature.title}
+                    </h4>
+                    <p className="text-text-secondary text-[11px] uppercase tracking-widest font-semibold">
+                      {feature.subtitle}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
+
+        {/* Optional Journey/CTA Section */}
+        {hideExploreButton && (
+          <div className="mt-16 lg:mt-24 rounded-3xl bg-text-primary p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-accent-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+            
+            <div className="w-full md:w-2/3 relative z-10">
+              <h4 className="text-accent-primary font-display font-bold tracking-wide text-2xl md:text-3xl mb-4">Our Journey</h4>
+              <p className="text-white/80 text-base md:text-lg leading-relaxed font-light">
+                For over two decades, Advait Stock Market Academy has been at the forefront of financial education in Central India. We started with a simple vision to demystify the stock market, and today we have empowered thousands of students to achieve financial independence through practical, live-market training and mentorship.
+              </p>
+            </div>
+
+            <div className="w-full md:w-1/3 relative z-10 flex justify-center md:justify-end">
+              <a href="tel:09156953895" className="px-8 py-4 bg-accent-primary text-text-primary font-bold uppercase tracking-wider text-sm rounded-xl hover:bg-white transition-all text-center shadow-lg shadow-accent-primary/30 hover:-translate-y-1">
+                Call Now: <PhoneNumber number="09156953895" />
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </AnimatedSection>
   );

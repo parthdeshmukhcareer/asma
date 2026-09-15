@@ -7,8 +7,8 @@ import { blogPosts } from '../blogData';
 import shubhangiImg from '../assets/shubhangi.png';
 import krishnaImg from '../assets/krishna.png';
 import vrushaliImg from '../assets/vrushali.png';
-import { serviceData, courseDetails, baseCourses, additionalCourses, coursePackages, FREE_NOTES } from '../data';
-
+import { serviceData, courseDetails, baseCourses, additionalCourses, coursePackages, FREE_NOTES, courseFaqs } from '../data';
+import FaqSection from '../components/FaqSection';
 const CourseDetailsPage = () => {
   const { courseId } = useParams();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -300,6 +300,9 @@ const CourseDetailsPage = () => {
           </div>
         </div>
       )}
+
+      {/* Course FAQs Section */}
+      <FaqSection faqs={courseFaqs} title="Course FAQs" subtitle="Common questions about our stock market training programs." />
     </div>
   );
 };
