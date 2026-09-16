@@ -54,8 +54,6 @@ const BlogPostSection = () => {
             </div>
           </div>
           <div className="flex items-center gap-3 text-text-secondary text-xs md:text-sm font-medium">
-            <span>Published: {post.date}</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-text-secondary/35"></span>
             <span>{post.readTime}</span>
           </div>
         </div>

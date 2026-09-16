@@ -4,7 +4,7 @@ export const blogPosts = [
     title: "Understanding Candlestick Patterns: A Beginner's Guide",
     excerpt: "Learn how to read candlestick charts and recognize key price action patterns to make better trading decisions.",
     category: "Technical Analysis",
-    date: "June 8, 2026",
+
     readTime: "6 min read",
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop",
     author: {
@@ -32,7 +32,7 @@ export const blogPosts = [
     title: "Top 5 Risk Management Strategies for Intraday Traders",
     excerpt: "No trading strategy works without risk management. Protect your trading capital with these 5 battle-tested rules.",
     category: "Trading",
-    date: "June 6, 2026",
+
     readTime: "5 min read",
     image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=800&auto=format&fit=crop",
     author: {
@@ -58,7 +58,7 @@ export const blogPosts = [
     title: "Why Long-Term Investing Beats Short-Term Speculation",
     excerpt: "Discover the power of compounding and why holding quality businesses long-term is the safest path to wealth.",
     category: "Investing",
-    date: "June 4, 2026",
+
     readTime: "7 min read",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
     author: {
@@ -81,7 +81,7 @@ export const blogPosts = [
     title: "Demystifying Futures & Options (F&O) Trading",
     excerpt: "An introductory guide to derivatives. Learn what F&O is, how leverage works, and the risks involved.",
     category: "Trading",
-    date: "June 1, 2026",
+
     readTime: "8 min read",
     image: "https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?q=80&w=800&auto=format&fit=crop",
     author: {
@@ -105,7 +105,7 @@ export const blogPosts = [
     title: "5 Financial Ratios You Must Know for Investing",
     excerpt: "Learn how to analyze a company's financial health using key ratios like P/E, RoE, and Debt-to-Equity.",
     category: "Fundamental Analysis",
-    date: "May 28, 2026",
+
     readTime: "6 min read",
     image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop",
     author: {
@@ -131,7 +131,7 @@ export const blogPosts = [
     title: "The Psychology of Successful Trading",
     excerpt: "Master your emotions to master the market. Learn the mindset secrets of top traders.",
     category: "Trading Psychology",
-    date: "May 25, 2026",
+
     readTime: "5 min read",
     image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=800&auto=format&fit=crop",
     author: {
@@ -142,7 +142,34 @@ export const blogPosts = [
     content: [
       { type: "paragraph", text: "While technical analysis and risk management are crucial, the true battlefield for traders is their own mind. Trading psychology deals with the emotional factors that dictate our decisions in the market." },
       { type: "heading", text: "Overcoming Fear and Greed" },
-      { type: "paragraph", text: "Fear causes traders to exit winning positions too early or hesitate to take valid setups. Greed pushes them to over-leverage or hold losing positions hoping for a miraculous recovery. Developing a mechanical approach and sticking to a pre-defined trading plan is the best way to neutralize these primal emotions." }
+    ]
+  },
+  {
+    id: "about-advait-stock-market-academy",
+    title: "Everything You Need to Know About Advait Stock Market Academy",
+    excerpt: "Discover why Advait Stock Market Academy is the premier destination for learning trading, investing, and financial freedom.",
+    category: "Trading",
+    readTime: "10 min read",
+    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=800&auto=format&fit=crop",
+    author: {
+      name: "Devendra Meshram",
+      role: "Founder & Chief Mentor",
+      avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=256&h=256&auto=format&fit=crop"
+    },
+    content: [
+      { type: "paragraph", text: "Welcome to Advait Stock Market Academy, the ultimate destination for those looking to conquer the financial markets. Whether you're a complete beginner looking to understand the basics or an experienced trader seeking advanced strategies, we have something for everyone." },
+      { type: "heading", text: "Our Mission" },
+      { type: "paragraph", text: "At Advait Stock Market Academy, our mission is to demystify the stock market and make financial education accessible to all. We believe that with the right knowledge and discipline, anyone can achieve financial independence." },
+      { type: "heading", text: "What We Offer" },
+      { type: "list", items: [
+        "**Comprehensive Courses:** From Basics of Stock Market to Advanced Options Trading.",
+        "**Expert Mentorship:** Learn directly from Devendra Meshram and our team of seasoned professionals.",
+        "**Live Trading Sessions:** Experience real-time market analysis and trade execution.",
+        "**Community Support:** Join a network of like-minded individuals dedicated to financial growth."
+      ]},
+      { type: "heading", text: "Why Choose Us?" },
+      { type: "paragraph", text: "Unlike other institutes, we focus on practical, actionable knowledge rather than just theory. Our curriculum is designed to teach you how to manage risk, understand market psychology, and develop a winning trading plan." },
+      { type: "paragraph", text: "We pride ourselves on our core values: Integrity, Excellence, and Student Success. When you join Advait Stock Market Academy, you're not just taking a course; you're becoming part of a family committed to your financial future." }
     ]
   }
 ];

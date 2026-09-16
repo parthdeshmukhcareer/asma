@@ -91,8 +91,6 @@ const BlogPageSection = () => {
                 {/* Card Body */}
                 <div className="p-6 md:p-8 flex flex-col flex-grow">
                   <div className="flex items-center gap-3 text-text-secondary text-xs font-medium mb-3">
-                    <span>{post.date}</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-text-secondary/35"></span>
                     <span>{post.readTime}</span>
                   </div>
 
