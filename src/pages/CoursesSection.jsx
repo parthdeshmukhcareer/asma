@@ -66,6 +66,12 @@ const CoursesSection = ({ isCoursesPage = false }) => {
           </p>
         </div>
 
+        {isCoursesPage && (
+          <div className="mb-16 md:mb-20">
+            <LatestUpdatesSection />
+          </div>
+        )}
+
         {/* Informational Section (Courses Page Only) */}
         {isCoursesPage && (
           <div className="mb-16 md:mb-20 bg-gradient-to-br from-[#166534]/5 to-transparent border border-[#166534]/15 rounded-[32px] p-8 md:p-12 shadow-2xl text-left relative overflow-hidden group">
