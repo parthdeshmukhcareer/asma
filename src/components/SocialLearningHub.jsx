@@ -207,8 +207,7 @@ const SocialLearningHub = () => {
           <div className="flex bg-white rounded-xl p-1 border border-[#e6e2d8] shadow-sm self-start lg:self-end shrink-0">
             {[
               { id: 'youtube', label: 'YouTube' },
-              { id: 'reels', label: 'Instagram Reels' },
-              { id: 'shorts', label: 'Shorts / Highlights' }
+              { id: 'reels', label: 'Instagram Reels' }
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -315,6 +314,19 @@ const SocialLearningHub = () => {
                 </div>
               </div>
             ))}
+            
+            {/* VIEW MORE BUTTON */}
+            <a 
+              href={activeTab === 'youtube' ? "https://www.youtube.com/@advaitsharemarketacademy-x5p" : "https://www.instagram.com/asma_stockmarket/"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 md:mt-0 flex items-center justify-center gap-2 bg-transparent hover:bg-[#fcfbf9] text-[#1a2e22] py-3 px-4 rounded-xl font-bold text-sm tracking-widest uppercase transition-all duration-300 border border-dashed border-[#d0c9b8] hover:border-[#1a2e22] group"
+            >
+              View More {activeTab === 'youtube' ? 'Videos' : 'Reels'}
+              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
           </div>
 
         </div>

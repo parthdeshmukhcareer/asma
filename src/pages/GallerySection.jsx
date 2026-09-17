@@ -46,6 +46,8 @@ const GallerySection = ({ isGalleryPage = false }) => {
   ];
 
   const galleryItems = isGalleryPage ? [...baseGalleryItems, ...additionalGalleryItems] : baseGalleryItems;
+  const imageItems = galleryItems.filter(item => !item.url.toLowerCase().endsWith('.mp4'));
+  const displayItems = imageItems.slice(0, 7);
 
   // Autoplay Logic
   React.useEffect(() => {
@@ -79,14 +81,29 @@ const GallerySection = ({ isGalleryPage = false }) => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-accent-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="container mx-auto px-4 md:px-8 lg:px-12 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-primary/10 text-accent-primary font-bold tracking-widest uppercase text-[10px] mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-primary animate-pulse"></span>
-            Inside ASMA
+        {!isGalleryPage ? (
+          <div className="text-center max-w-2xl mx-auto mb-12 w-full">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#b59a56]/10 text-[#b59a56] font-bold tracking-widest uppercase text-[10px] mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#b59a56] animate-pulse"></span>
+              AWARDS
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[#1a2e22] leading-tight mb-4">
+              An Insight Into Our Award<br className="hidden md:block" /> Ceremony Events
+            </h2>
+            <p className="text-[#5a6b5e] text-base font-bold leading-relaxed">
+              Celebrating excellence, dedication, and the remarkable achievements of our trading community.
+            </p>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-text-primary leading-tight mb-4">State-of-the-Art <span className="text-accent-primary">Infrastructure</span></h2>
-          <p className="text-text-secondary text-base font-bold leading-relaxed">Step into our state-of-the-art training facilities. A vibrant community of traders learning, growing, and succeeding together.</p>
-        </div>
+        ) : (
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-primary/10 text-accent-primary font-bold tracking-widest uppercase text-[10px] mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent-primary animate-pulse"></span>
+              Inside ASMA
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-text-primary leading-tight mb-4">State-of-the-Art <span className="text-accent-primary">Infrastructure</span></h2>
+            <p className="text-text-secondary text-base font-bold leading-relaxed">Step into our state-of-the-art training facilities. A vibrant community of traders learning, growing, and succeeding together.</p>
+          </div>
+        )}
 
         {/* Informational Section (Gallery Page Only) */}
         {isGalleryPage && (
@@ -137,7 +154,52 @@ const GallerySection = ({ isGalleryPage = false }) => {
           </div>
         )}
 
-        {/* Cinematic Showcase Layout */}
+        {/* Gallery Layout */}
+        {!isGalleryPage && displayItems.length >= 7 ? (
+          <div className="flex flex-col items-center w-full">
+            <div className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full h-auto lg:h-[500px] xl:h-[600px] mb-12">
+              {/* Left Main Column */}
+              <div className="flex gap-4 md:gap-6 lg:w-[32%] h-[600px] lg:h-full">
+                {/* Sub-col 1 */}
+                <div className="flex flex-col gap-4 md:gap-6 w-1/2 h-full">
+                  <img src={displayItems[0].url} className="w-full flex-grow-[1.6] object-cover rounded-[24px] shadow-md hover:scale-[1.02] transition-transform duration-500 cursor-pointer" alt={displayItems[0].title} onClick={() => { setActiveImg(galleryItems.indexOf(displayItems[0])); setIsLightboxOpen(true); }} />
+                  <img src={displayItems[1].url} className="w-full flex-grow-[1] object-cover rounded-[24px] shadow-md hover:scale-[1.02] transition-transform duration-500 cursor-pointer" alt={displayItems[1].title} onClick={() => { setActiveImg(galleryItems.indexOf(displayItems[1])); setIsLightboxOpen(true); }} />
+                </div>
+                {/* Sub-col 2 */}
+                <div className="flex flex-col justify-center w-1/2 h-full py-8 md:py-16">
+                  <img src={displayItems[2].url} className="w-full h-full object-cover rounded-[24px] shadow-md hover:scale-[1.02] transition-transform duration-500 cursor-pointer" alt={displayItems[2].title} onClick={() => { setActiveImg(galleryItems.indexOf(displayItems[2])); setIsLightboxOpen(true); }} />
+                </div>
+              </div>
+
+              {/* Center Main Column */}
+              <div className="lg:w-[36%] h-[400px] lg:h-full flex flex-col justify-center py-4 md:py-8">
+                <img src={displayItems[3].url} className="w-full h-full object-cover rounded-[24px] shadow-xl hover:scale-[1.02] transition-transform duration-500 cursor-pointer" alt={displayItems[3].title} onClick={() => { setActiveImg(galleryItems.indexOf(displayItems[3])); setIsLightboxOpen(true); }} />
+              </div>
+
+              {/* Right Main Column */}
+              <div className="flex gap-4 md:gap-6 lg:w-[32%] h-[600px] lg:h-full">
+                {/* Sub-col 1 */}
+                <div className="flex flex-col justify-center w-1/2 h-full py-8 md:py-16">
+                  <img src={displayItems[4].url} className="w-full h-full object-cover rounded-[24px] shadow-md hover:scale-[1.02] transition-transform duration-500 cursor-pointer" alt={displayItems[4].title} onClick={() => { setActiveImg(galleryItems.indexOf(displayItems[4])); setIsLightboxOpen(true); }} />
+                </div>
+                {/* Sub-col 2 */}
+                <div className="flex flex-col gap-4 md:gap-6 w-1/2 h-full">
+                  <img src={displayItems[5].url} className="w-full flex-grow-[1.6] object-cover rounded-[24px] shadow-md hover:scale-[1.02] transition-transform duration-500 cursor-pointer" alt={displayItems[5].title} onClick={() => { setActiveImg(galleryItems.indexOf(displayItems[5])); setIsLightboxOpen(true); }} />
+                  <img src={displayItems[6].url} className="w-full flex-grow-[1] object-cover rounded-[24px] shadow-md hover:scale-[1.02] transition-transform duration-500 cursor-pointer" alt={displayItems[6].title} onClick={() => { setActiveImg(galleryItems.indexOf(displayItems[6])); setIsLightboxOpen(true); }} />
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+              <Link to="/gallery" className="px-8 py-3.5 bg-[#b59a56] text-white text-sm font-bold tracking-widest uppercase rounded-xl hover:bg-[#1a2e22] transition-colors shadow-md text-center">
+                MORE PHOTOS
+              </Link>
+              <Link to="/gallery" className="px-8 py-3.5 bg-transparent text-[#1a2e22] hover:text-[#b59a56] text-sm font-bold tracking-widest uppercase border-2 border-[#1a2e22] rounded-xl transition-colors text-center">
+                MORE VIDEOS
+              </Link>
+            </div>
+          </div>
+        ) : (
         <div className="flex flex-col gap-3 md:gap-4 w-full max-w-5xl mx-auto">
 
           {/* Main Featured Image/Video */}
@@ -212,6 +274,7 @@ const GallerySection = ({ isGalleryPage = false }) => {
           </div>
 
         </div>
+        )}
       </div>
 
       {/* Lightbox Modal */}
