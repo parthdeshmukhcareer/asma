@@ -366,6 +366,22 @@ export const homeFaqs = [
   {
     question: "Do I need a finance background to join Advait Stock Market Academy?",
     answer: "Not at all. Our courses are structured from scratch, making it easy for students from any background to grasp complex market concepts."
+  },
+  {
+    question: "Which is the best share market training institute in Nagpur?",
+    answer: "Advait Stock Market Academy is widely recognized as one of the best share market training institutes in Nagpur. With over 20 years of experience, we provide comprehensive stock market classes, live trading sessions, and expert mentorship for both beginners and advanced traders."
+  },
+  {
+    question: "What are the fees for stock market courses at Advait Stock Market Academy?",
+    answer: "Advait Stock Market Academy offers highly affordable stock market trading courses in Nagpur, starting from foundational classes to our complete Professional Master Program. We provide exceptional value through lifetime mentorship, premium community access, and practical live market sessions."
+  },
+  {
+    question: "Does Advait Stock Market Academy provide the best technical analysis course in Nagpur?",
+    answer: "Yes, our technical analysis course is considered among the best in Nagpur. Advait Stock Market Academy teaches advanced chart patterns, price action, and trading strategies, empowering students to confidently navigate the Indian stock market, MCX, and Forex."
+  },
+  {
+    question: "How can I join the share market classes at Advait Stock Market Academy, Nagpur?",
+    answer: "You can easily enroll in our top-rated share market classes by visiting our academy at Besa-Pipla Road, Nagpur, or contacting us online. Advait Stock Market Academy offers both offline classroom training and online live stock market courses to suit your schedule."
   }
 ];
 
@@ -393,6 +409,22 @@ export const courseFaqs = [
   {
     question: "Will I get practical live-market experience during the course?",
     answer: "Absolutely. We strongly believe in practical learning. You will execute trades in the live market under the guidance of our expert mentors."
+  },
+  {
+    question: "What are the fees for stock market courses in Nagpur at Advait Academy?",
+    answer: "Advait Stock Market Academy offers affordable stock market courses in Nagpur. We provide structured training from foundational equity trading to our comprehensive Professional Master Program, ensuring the best value and lifetime mentorship."
+  },
+  {
+    question: "Which is the best stock market trading course for beginners in Nagpur?",
+    answer: "Advait Stock Market Academy offers the best stock market trading course for beginners in Nagpur. Our Advanced Foundation course takes you step-by-step through market basics, Demat account operations, and technical analysis."
+  },
+  {
+    question: "Can I learn options trading in Nagpur at Advait Stock Market Academy?",
+    answer: "Yes, our Professional Master Program includes extensive options trading classes in Nagpur. You will master options strategies, futures trading, and risk management through practical, live-market sessions."
+  },
+  {
+    question: "Does Advait Stock Market Academy offer online share market classes?",
+    answer: "Yes, we provide both online share market classes and offline training at our Nagpur institute. Our online live sessions are highly interactive and designed to give you the same practical experience as classroom learning."
   }
 ];
 
@@ -420,6 +452,22 @@ export const analysisFaqs = [
   {
     question: "Which charting software do you teach at Advait Stock Market Academy?",
     answer: "We train our students on industry-standard platforms like TradingView, helping them understand advanced indicators and smart money concepts."
+  },
+  {
+    question: "Where can I learn technical analysis of stocks in Nagpur?",
+    answer: "Advait Stock Market Academy is the premier institute to learn technical analysis of stocks in Nagpur. We cover advanced price action, chart patterns, volume analysis, and multi-timeframe analysis for precise entries and exits."
+  },
+  {
+    question: "What is the best fundamental analysis course in Nagpur?",
+    answer: "Our Professional Master Program includes the best fundamental analysis course in Nagpur, teaching you how to read balance sheets, analyze key financial ratios, and identify long-term value investing and multi-bagger stock opportunities."
+  },
+  {
+    question: "Does Advait Stock Market Academy teach algorithmic trading in Nagpur?",
+    answer: "Yes, Advait Stock Market Academy introduces algorithmic trading setups and rule-based systems. We teach you how to automate alerts, backtest trading strategies, and execute trades with strict risk management."
+  },
+  {
+    question: "Can I learn Forex and Commodity trading analysis at your institute?",
+    answer: "Absolutely. Advait Stock Market Academy provides specialized technical analysis training for the Currency (Forex) and Commodity (MCX) markets in Nagpur, helping you diversify your trading portfolio beyond equities."
   }
 ];
 
@@ -447,6 +495,22 @@ export const servicesFaqs = [
   {
     question: "How does lifetime support and mentorship work?",
     answer: "Even after your course finishes, you remain part of the Advait Stock Market Academy community with access to market updates, strategy reviews, and direct mentor support."
+  },
+  {
+    question: "What financial planning services does Advait Stock Market Academy provide in Nagpur?",
+    answer: "Advait Stock Market Academy offers expert financial planning services in Nagpur, including goal-based investing, retirement planning, tax optimization, and building emergency funds to secure your financial future."
+  },
+  {
+    question: "Can I get personalized portfolio management services in Nagpur?",
+    answer: "Yes, we provide highly customized portfolio management services in Nagpur for high-net-worth individuals. We focus on dynamic asset allocation, risk minimization, and long-term wealth maximization."
+  },
+  {
+    question: "Which is the best institute for mutual fund investment advice in Nagpur?",
+    answer: "Advait Stock Market Academy provides the best mutual fund investment advice and training in Nagpur. We guide you on selecting the right equity, debt, and hybrid funds for SIPs or lumpsum investments."
+  },
+  {
+    question: "Do you provide insurance planning and advisory in Nagpur?",
+    answer: "Yes, alongside our core stock market services, Advait Stock Market Academy helps clients in Nagpur navigate health, term, life, and motor insurance plans to ensure comprehensive protection for their families and assets."
   }
 ];
 
@@ -474,6 +538,22 @@ export const aboutContactFaqs = [
   {
     question: "Can I visit the academy for a face-to-face consultation?",
     answer: "Yes, we welcome aspiring traders to visit our Nagpur center at Besa–Pipla Road for a personal career counseling session."
+  },
+  {
+    question: "Who is the best stock market trainer in Nagpur?",
+    answer: "Advait Stock Market Academy boasts some of the best stock market trainers in Nagpur, led by professionals with over 20 years of active trading and investing experience who are dedicated to your financial success."
+  },
+  {
+    question: "What are the contact details for Advait Stock Market Academy in Nagpur?",
+    answer: "You can visit Advait Stock Market Academy at our main branch on Besa-Pipla Road, Nagpur. You can also reach us via phone or through our website to book a personalized career counseling session."
+  },
+  {
+    question: "Is Advait Stock Market Academy a registered trading institute in Nagpur?",
+    answer: "Advait Stock Market Academy is a highly trusted and reputed trading institute in Nagpur with a track record of transforming beginners into consistently profitable traders through ethical and transparent teaching methods."
+  },
+  {
+    question: "Why is Advait Stock Market Academy rated as the top share market class in Nagpur?",
+    answer: "We are rated as the top share market class in Nagpur because of our student-first approach, practical live-market training, comprehensive curriculum, and unwavering commitment to post-course mentorship and support."
   }
 ];
 export const baseCourses = [

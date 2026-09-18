@@ -15,11 +15,27 @@ const GallerySection = ({ isGalleryPage = false }) => {
   const [activeImg, setActiveImg] = React.useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = React.useState(true);
   const [isLightboxOpen, setIsLightboxOpen] = React.useState(false);
+  const [filterCategory, setFilterCategory] = React.useState('All');
+  const [visibleItemsCount, setVisibleItemsCount] = React.useState(12);
 
-  const baseGalleryItems = [
-    { url: "/Home/ANUJ9212.MP4", title: "Live Market Sessions", desc: "Experience our interactive trading floor." },
-    { url: "/Home/ANUJ9219.MP4", title: "Trading Insights", desc: "In-depth technical analysis breakdowns." },
-    { url: "/Home/ANUJ9245.MP4", title: "Student Community", desc: "Join our active community of professional traders." },
+  const newGalleryItems = [
+    { url: "/videos/ANUJ9211.MP4", title: "Live Market Experience", desc: "Experience the pulse of live trading." },
+    { url: "/videos/ANUJ9212-compressed.mp4", title: "Interactive Trading Floor", desc: "Join our active community of professional traders." },
+    { url: "/videos/ANUJ9213.MP4", title: "Technical Analysis", desc: "In-depth chart breakdowns in real-time." },
+    { url: "/new photos/WhatsApp Image 2026-09-18 at 5.34.41 PM.jpeg", title: "Student Classroom", desc: "Dedicated students focusing during intense sessions." },
+    { url: "/new photos/WhatsApp Image 2026-09-18 at 5.35.18 PM.jpeg", title: "Faculty Mentorship", desc: "Guidance from our lead mentors." },
+    { url: "/videos/ANUJ9216.MP4", title: "Market Psychology", desc: "Understanding the emotional side of trading." },
+    { url: "/new photos/WhatsApp Image 2026-09-18 at 5.40.48 PM.jpeg", title: "Trading Setups", desc: "Our state of the art trading desks." },
+    { url: "/videos/ANUJ9217.MP4", title: "Live Workshops", desc: "Interactive sessions with our experts." },
+    { url: "/new photos/WhatsApp Image 2026-09-18 at 5.41.22 PM.jpeg", title: "Community Bonds", desc: "Learning and growing wealth together." },
+    { url: "/videos/ANUJ9218.MP4", title: "Advanced Concepts", desc: "Deep dive into complex market dynamics." },
+    { url: "/new photos/WhatsApp Image 2026-09-18 at 5.41.39 PM.jpeg", title: "Focused Learning", desc: "Immersive classroom environment." },
+    { url: "/videos/ANUJ9219-compressed.mp4", title: "Execution Strategy", desc: "Executing real-time trades effectively." },
+    { url: "/new photos/WhatsApp Image 2026-09-18 at 5.42.11 PM.jpeg", title: "Trade Counseling", desc: "One-on-one portfolio reviews." },
+    { url: "/videos/ANUJ9221.MP4", title: "Market Insights", desc: "Continuous market analysis and strategy." },
+  ];
+
+  const homeGalleryItems = [
     { url: "/Home/new2.png", title: "Student Classroom", desc: "Our dedicated students focusing during intense trading sessions." },
     { url: "/Home/new3.png", title: "Faculty Mentorship", desc: "Guidance from our lead mentor on the trading floor." },
     { url: "/Home/new5.png", title: "Interactive Discussions", desc: "Group discussions and doubt clearing sessions with faculty." },
@@ -45,7 +61,7 @@ const GallerySection = ({ isGalleryPage = false }) => {
     { url: "/Home/5.png", title: "Engineering Trading Success", desc: "Celebrating the analytical minds that approach the stock market with precision, logic, and calculated strategy." },
   ];
 
-  const galleryItems = isGalleryPage ? [...baseGalleryItems, ...additionalGalleryItems] : baseGalleryItems;
+  const galleryItems = isGalleryPage ? [...newGalleryItems, ...homeGalleryItems, ...additionalGalleryItems] : homeGalleryItems;
   const imageItems = galleryItems.filter(item => !item.url.toLowerCase().endsWith('.mp4'));
   const displayItems = imageItems.slice(0, 7);
 
@@ -74,6 +90,13 @@ const GallerySection = ({ isGalleryPage = false }) => {
     e.stopPropagation();
     setActiveImg((prev) => (prev - 1 + galleryItems.length) % galleryItems.length);
   };
+
+  const filteredGallery = galleryItems.filter(item => {
+    if (filterCategory === 'All') return true;
+    const isVideo = item.url.toLowerCase().endsWith('.mp4');
+    return filterCategory === 'Videos' ? isVideo : !isVideo;
+  });
+  const paginatedGallery = isGalleryPage ? filteredGallery.slice(0, visibleItemsCount) : [];
 
   return (
     <AnimatedSection id="gallery" className="py-12 md:py-16 bg-white relative overflow-hidden">
@@ -200,80 +223,68 @@ const GallerySection = ({ isGalleryPage = false }) => {
             </div>
           </div>
         ) : (
-        <div className="flex flex-col gap-3 md:gap-4 w-full max-w-5xl mx-auto">
-
-          {/* Main Featured Image/Video */}
-          <div 
-            className="relative w-full h-[250px] sm:h-[350px] lg:h-[450px] rounded-[24px] overflow-hidden shadow-xl group bg-bg-secondary border border-text-primary/5 cursor-pointer"
-            onClick={() => { setIsLightboxOpen(true); setIsAutoPlaying(false); }}
-          >
-            {galleryItems[activeImg].url.toLowerCase().endsWith('.mp4') ? (
-              <video 
-                key={activeImg}
-                src={galleryItems[activeImg].url}
-                className="w-full h-full object-cover transition-transform duration-[2s] ease-in-out group-hover:scale-105 animate-fade-in"
-                autoPlay muted loop playsInline
-              />
-            ) : (
-              <img loading="lazy"
-                key={activeImg} // Forces re-render for transition if needed, or rely on CSS
-                src={galleryItems[activeImg].url}
-                alt={galleryItems[activeImg].title}
-                className="w-full h-full object-cover transition-transform duration-[2s] ease-in-out group-hover:scale-105 animate-fade-in"
-              />
-            )}
-
-            {/* Premium Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-
-            {/* Dynamic Content - Always Visible */}
-            <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full">
-              <div className="mb-2">
-                <h3 className="text-2xl md:text-3xl font-display font-bold text-white transition-opacity duration-500">
-                  {galleryItems[activeImg].title}
-                </h3>
-              </div>
-              <div>
-                <p className="text-white/80 text-sm md:text-base font-light transition-opacity duration-500">
-                  {galleryItems[activeImg].desc}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Interactive Thumbnails */}
-          <div className="grid grid-cols-4 gap-2 md:gap-4">
-            {galleryItems.map((item, i) => (
-              <div
-                key={i}
-                onClick={() => handleImageClick(i)}
-                className={`relative h-16 sm:h-20 md:h-28 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${activeImg === i
-                  ? 'ring-2 ring-accent-primary ring-offset-2 shadow-md scale-[1.02]'
-                  : 'opacity-50 hover:opacity-100 hover:scale-[1.02]'
+          <div className="w-full">
+            {/* Filter Pills */}
+            <div className="flex justify-center flex-wrap gap-3 md:gap-4 mb-10">
+              {['All', 'Photos', 'Videos'].map(cat => (
+                <button
+                  key={cat}
+                  onClick={() => { setFilterCategory(cat); setVisibleItemsCount(12); }}
+                  className={`px-6 py-2.5 rounded-full text-sm font-bold tracking-widest uppercase transition-all duration-300 ${
+                    filterCategory === cat 
+                      ? 'bg-[#166534] text-white shadow-lg scale-105'
+                      : 'bg-white text-text-secondary border border-[#166534]/20 hover:bg-[#166534]/5 hover:text-[#166534]'
                   }`}
-              >
-                {item.url.toLowerCase().endsWith('.mp4') ? (
-                  <video src={item.url} className="w-full h-full object-cover" muted playsInline />
-                ) : (
-                  <img loading="lazy" src={item.url} alt={`Thumbnail ${i + 1}`} className="w-full h-full object-cover" />
-                )}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
 
-                {/* Selection indicator */}
-                {activeImg === i && (
-                  <div className="absolute inset-0 bg-accent-primary/20 mix-blend-overlay"></div>
-                )}
-                
-                {/* Play icon overlay for videos */}
-                {item.url.toLowerCase().endsWith('.mp4') && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" /></svg>
+            {/* Masonry Grid */}
+            <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+              {paginatedGallery.map((item, i) => {
+                const globalIndex = galleryItems.indexOf(item);
+                const isVideo = item.url.toLowerCase().endsWith('.mp4');
+                return (
+                  <div
+                    key={i}
+                    onClick={() => { setActiveImg(globalIndex); setIsLightboxOpen(true); setIsAutoPlaying(false); }}
+                    className="relative group rounded-[24px] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer break-inside-avoid bg-bg-secondary border border-text-primary/5"
+                  >
+                    {isVideo ? (
+                      <video src={item.url} preload="auto" autoPlay loop muted playsInline className="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                    ) : (
+                      <img loading="lazy" src={item.url} alt={item.title} className="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                    )}
+
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                      {isVideo && (
+                        <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md rounded-full p-2">
+                          <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" /></svg>
+                        </div>
+                      )}
+                      <h3 className="text-xl font-display font-bold text-white mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{item.title}</h3>
+                      <p className="text-white/80 text-sm font-light transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75 line-clamp-2">{item.desc}</p>
+                    </div>
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
+                );
+              })}
+            </div>
 
-        </div>
+            {/* Load More Button */}
+            {visibleItemsCount < filteredGallery.length && (
+              <div className="flex justify-center mt-12">
+                <button 
+                  onClick={() => setVisibleItemsCount(prev => prev + 8)}
+                  className="px-8 py-3.5 bg-transparent text-[#166534] hover:bg-[#166534] hover:text-white text-sm font-bold tracking-widest uppercase border-2 border-[#166534] rounded-xl transition-colors shadow-sm"
+                >
+                  Load More
+                </button>
+              </div>
+            )}
+          </div>
         )}
       </div>
 

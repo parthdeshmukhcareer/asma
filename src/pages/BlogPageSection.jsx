@@ -75,7 +75,7 @@ const BlogPageSection = () => {
                 className="group flex flex-col bg-white rounded-[32px] border border-text-primary/10 shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 overflow-hidden"
               >
                 {/* Image Wrap */}
-                <div className="relative h-60 overflow-hidden">
+                <Link to={`/blog/${post.id}`} className="block relative h-60 overflow-hidden">
                   <img loading="lazy"
                     src={post.image}
                     alt={post.title}
@@ -86,7 +86,7 @@ const BlogPageSection = () => {
                       {post.category}
                     </span>
                   </div>
-                </div>
+                </Link>
 
                 {/* Card Body */}
                 <div className="p-6 md:p-8 flex flex-col flex-grow">
@@ -105,31 +105,20 @@ const BlogPageSection = () => {
                   {/* Divider */}
                   <div className="h-px bg-text-primary/5 my-4"></div>
 
-                  {/* Author and Read More */}
-                  <div className="flex justify-between items-center mt-auto">
-                    <div className="flex items-center gap-3">
-                      <img loading="lazy"
-                        src={post.author.avatar}
-                        alt={post.author.name}
-                        className="w-10 h-10 rounded-full object-cover border border-text-primary/5"
-                      />
-                      <div>
-                        <div className="text-xs font-bold text-text-primary">{post.author.name}</div>
-                        <div className="text-[10px] text-text-secondary font-light">{post.author.role}</div>
-                      </div>
-                    </div>
-
+                  {/* Read More Link */}
+                  <div className="mt-auto flex justify-end">
                     <Link
                       to={`/blog/${post.id}`}
-                      className="w-10 h-10 rounded-full bg-bg-secondary flex items-center justify-center text-text-primary hover:bg-accent-primary hover:text-white transition-all group/btn"
+                      className="inline-flex items-center gap-2 text-accent-primary font-bold text-sm hover:text-text-primary transition-colors group/btn"
                     >
+                      Read Article
                       <svg
-                        className="w-4 h-4 transform group-hover/btn:translate-x-0.5 transition-transform"
+                        className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
                     </Link>
                   </div>
